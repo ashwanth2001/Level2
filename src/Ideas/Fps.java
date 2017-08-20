@@ -7,5 +7,5 @@ public class Fps {
 	//people running and trying to climb the wall
 	//side view - sniper with scope
 	// buttons: space/shoot - updownleftright/move - z/scope
-	//
+	//can only shoot while scoped
 }
