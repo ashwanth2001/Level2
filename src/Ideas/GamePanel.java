@@ -14,14 +14,17 @@ import java.awt.geom.Area;
 import java.awt.geom.Ellipse2D;
 
 import javax.swing.JPanel;
+import javax.swing.Timer;
 
 public class GamePanel extends JPanel implements ActionListener, KeyListener {
-
+	int repeat = 5;
+	Timer timer;
 	final int MenuState = 0;
 	final int GameState = 1;
 	final int EndState = 2;
 	int currentState = MenuState;
 	Font titleFont;
+	ObjectManager manager;
 
 	public void updateMenuState() {
 
@@ -29,19 +32,33 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 
 	public void drawMenuState(Graphics g) {
 		g.setColor(Color.BLUE);
-		g.fillRect(0, 0, 500, 800);
+		g.fillRect(0, 0, 1000, 800);
 		g.setColor(Color.BLACK);
 		g.setFont(titleFont);
 		g.drawString("SHOOT EM", 25, 100);
 	}
 
 	public void updateGameState() {
-
+		manager.update();
+		manager.manageEnemies();
 	}
 
 	public void drawGameState(Graphics g) {
+		g.setColor(Color.RED);
+		g.fillRect(0, 0, 1000, 800);
+		manager.draw(g);
+		g.setColor(Color.GRAY);
+		g.fillRect(0, 600, 1000, 200);
+		g.setColor(Color.blue);
+		g.fillRect(0, 0, 1000, 250);
 		g.setColor(Color.BLACK);
-		g.fillRect(0, 0, 500, 800);
+		//Graphics2D g2d = (Graphics2D) g;
+		//Area a = new Area(new Rectangle(0, 0, 1000, 800));
+		//a.subtract(new Area(new Ellipse2D.Double(350, 250, 300, 300)));
+		//g2d.fill(a);
+		g.fillRect(495,240,10,320);
+		g.fillRect(340, 395, 320, 10);
+		
 		g.setColor(Color.YELLOW);
 		g.setFont(titleFont);
 	}
@@ -51,18 +68,31 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	}
 
 	public void drawEndState(Graphics g) {
-		g.setColor(Color.RED);
-		Graphics2D g2d = (Graphics2D) g;
-		Area a = new Area(new Rectangle(50, 50, 100, 100));
-		a.subtract(new Area(new Ellipse2D.Double(75, 75, 50, 50)));
-		g2d.fill(a);
+		g.setColor(Color.YELLOW);
+		g.fillRect(0, 0, 1000, 800);
 		g.setColor(Color.BLACK);
 		g.setFont(titleFont);
 		g.drawString("You've been invaded!", 100, 100);
 	}
 
 	public GamePanel() {
+		timer = new Timer(repeat, this);
 		titleFont = new Font("Arial", Font.PLAIN, 48);
+		manager = new ObjectManager();
+	}
+
+	void start() {
+		timer.start();
+	}
+
+	public void paintComponent(Graphics g) {
+		if (currentState == MenuState) {
+			drawMenuState(g);
+		} else if (currentState == GameState) {
+			drawGameState(g);
+		} else if (currentState == EndState) {
+			drawEndState(g);
+		}
 	}
 
 	@Override
@@ -93,7 +123,13 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	@Override
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
-
+		if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+			if (currentState == EndState) {
+				currentState = MenuState;
+			} else {
+				currentState++;
+			}
+		}
 	}
 
 	@Override
