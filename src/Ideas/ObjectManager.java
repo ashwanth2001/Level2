@@ -64,17 +64,23 @@ public class ObjectManager {
 				GameObject o1 = objects.get(i);
 				GameObject o2 = objects.get(j);
 				if (o1.collisionBox.intersects(o2.collisionBox)) {
-					if ((o1 instanceof Intruder && o2 instanceof setScope)
-							|| (o2 instanceof Intruder && o1 instanceof setScope)) {
+					if ((o1 instanceof Intruder && o2 instanceof Bullet)
+							|| (o2 instanceof Intruder && o1 instanceof Bullet)) {
 						score++;
 						System.out.println(score);
 						o1.isAlive = false;
 						o2.isAlive = false;
+					} //else if ((o1 instanceof Intruder && o2 instanceof setScope)
+							//|| (o2 instanceof Intruder && o1 instanceof setScope)) {
+						//o1.isAlive = false;
+						//o2.isAlive = false;
 					}
+
 				}
 			}
 		}
-	}
+
+	//}
 	public void reset() {
 		objects.clear();
 	}
