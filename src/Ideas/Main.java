@@ -1,6 +1,7 @@
 package Ideas;
 
 import javax.swing.JFrame;
+import java.awt.Component;
 
 public class Main {
 	JFrame frame;
@@ -17,6 +18,7 @@ public static void main(String args[]) {
 	void Jsetup() {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(width, height);
+		frame.setLocation(0,0);
 		frame.setVisible(true);
 		g.start();
 	}

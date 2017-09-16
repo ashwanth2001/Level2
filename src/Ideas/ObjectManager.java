@@ -1,6 +1,7 @@
 package Ideas;
 
 import java.awt.Graphics;
+import java.awt.MouseInfo;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -43,11 +44,41 @@ public class ObjectManager {
 			}
 		}
 	}
+
+	public static void main(String[] args) {
+
+	}
+
 	public void manageEnemies() {
 		if (System.currentTimeMillis() - enemyTimer >= enemySpawnTime) {
-			addObject(new Intruder(1000, new Random().nextInt(300)+250, 50, 50));
+			int y = new Random().nextInt(300) + 250;
+			double ySize = 2*y/6.54495*Math.atan(383.6635/(2*(800-y)));
+			addObject(new Intruder(1000, y, ySize, ySize));
 			enemyTimer = System.currentTimeMillis();
 		}
 	}
 
+	public void checkCollision() {
+		for (int i = 0; i < objects.size(); i++) {
+			for (int j = i + 1; j < objects.size(); j++) {
+				GameObject o1 = objects.get(i);
+				GameObject o2 = objects.get(j);
+				if (o1.collisionBox.intersects(o2.collisionBox)) {
+					if ((o1 instanceof Intruder && o2 instanceof setScope)
+							|| (o2 instanceof Intruder && o1 instanceof setScope)) {
+						score++;
+						System.out.println(score);
+						o1.isAlive = false;
+						o2.isAlive = false;
+					} else if ((o1 instanceof Intruder && o2 instanceof setScope)
+							|| (o2 instanceof Intruder && o1 instanceof setScope)) {
+						o1.isAlive = false;
+						o2.isAlive = false;
+					}
+
+				}
+			}
+		}
+
 	}
+}
