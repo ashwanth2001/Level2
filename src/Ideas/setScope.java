@@ -1,14 +1,10 @@
 package Ideas;
 
+import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.Rectangle;
 
 public class setScope extends GameObject{
-
-	int speed;
-	int x = 395;
-	int y = 495;
-	int width = 10;
-	int height = 10;
 
 	public setScope(int x, int y, int width, int height) {
 			super();
@@ -17,5 +13,13 @@ public class setScope extends GameObject{
 			this.width = width;
 			this.height = height;
 			this.collisionBox = new Rectangle(x,y,width,height);
-		}
+	}
+	void update() {
+		super.update();
+	}
+	void draw(Graphics g) {
+		g.setColor(Color.BLACK);
+		g.drawRect(x, y, width2, height2);
+	}
 }
+

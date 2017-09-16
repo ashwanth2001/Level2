@@ -28,6 +28,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	final int EndState = 2;
 	int currentState = MenuState;
 	Font titleFont;
+	setScope scope;
 	ObjectManager manager;
 
 	public void updateMenuState() {
@@ -50,6 +51,15 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	    Cursor invisibleCursor = toolkit.createCustomCursor(cursorImage, hotSpot, "InvisibleCursor");        
 	    setCursor(invisibleCursor);
 		manager.manageEnemies();
+		manager.checkCollision();
+		if (scope.isAlive) {
+		}
+		else {
+			manager.reset();
+			currentState = EndState;
+			scope = new setScope(495, 395, 10, 10);
+			manager.addObject(scope);
+		}
 	}
 
 	public void drawGameState(Graphics g) {
@@ -68,7 +78,6 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		g2d.fill(a);
 		g.fillRect(495, 240, 10, 320);
 		g.fillRect(340, 395, 320, 10);
-
 		g.setColor(Color.YELLOW);
 		g.setFont(titleFont);
 	}
@@ -88,7 +97,9 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	public GamePanel() {
 		timer = new Timer(repeat, this);
 		titleFont = new Font("Arial", Font.PLAIN, 48);
+		scope = new setScope(495, 395, 10, 10);
 		manager = new ObjectManager();
+		manager.addObject(scope);
 	}
 
 	void start() {
@@ -142,6 +153,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		}
 		if (e.getKeyCode() == KeyEvent.VK_SPACE) {
 			//manager.checkCollision();
+			System.out.println("shot");
 		}
 }
 

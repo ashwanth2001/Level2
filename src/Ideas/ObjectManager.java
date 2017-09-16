@@ -70,15 +70,12 @@ public class ObjectManager {
 						System.out.println(score);
 						o1.isAlive = false;
 						o2.isAlive = false;
-					} else if ((o1 instanceof Intruder && o2 instanceof setScope)
-							|| (o2 instanceof Intruder && o1 instanceof setScope)) {
-						o1.isAlive = false;
-						o2.isAlive = false;
 					}
-
 				}
 			}
 		}
-
+	}
+	public void reset() {
+		objects.clear();
 	}
 }
