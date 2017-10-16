@@ -1,5 +1,6 @@
 package Ideas;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
@@ -17,7 +18,7 @@ public class GameObject {
 		collisionBox.setBounds(x,y,width2,height2);
 	}
 	void draw(Graphics g){
-		
+
 	}
 	public GameObject(){
 		collisionBox = new Rectangle(x,y,width2,height2);

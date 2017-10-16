@@ -37,7 +37,7 @@ public class ObjectManager {
 		}
 	}
 
-	private void purgeObjects() {
+	public void purgeObjects() {
 		for (int i = 0; i < objects.size(); i++) {
 			if (!objects.get(i).isAlive) {
 				objects.remove(i);
@@ -64,14 +64,13 @@ public class ObjectManager {
 				GameObject o1 = objects.get(i);
 				GameObject o2 = objects.get(j);
 				if (o1.collisionBox.intersects(o2.collisionBox)) {
-					if ((o1 instanceof Intruder && o2 instanceof Bullet)
-							|| (o2 instanceof Intruder && o1 instanceof Bullet)) {
-						score++;
-						System.out.println(score);
+					if ((o1 instanceof Intruder && o2 instanceof setScope)
+							|| (o2 instanceof Intruder && o1 instanceof setScope)) {
+						//score++;
+						//System.out.println(score);
 						o1.isAlive = false;
-						o2.isAlive = false;
-					} //else if ((o1 instanceof Intruder && o2 instanceof setScope)
-							//|| (o2 instanceof Intruder && o1 instanceof setScope)) {
+					//} else if ((o1 instanceof Alien && o2 instanceof Rocketship)
+							//|| (o2 instanceof Alien && o1 instanceof Rocketship)) {
 						//o1.isAlive = false;
 						//o2.isAlive = false;
 					}
@@ -80,7 +79,7 @@ public class ObjectManager {
 			}
 		}
 
-	//}
+	}
 	public void reset() {
 		objects.clear();
 	}

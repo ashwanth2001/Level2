@@ -28,6 +28,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	final int EndState = 2;
 	int currentState = MenuState;
 	Font titleFont;
+	setScope scope;
 	ObjectManager manager;
 
 	public void updateMenuState() {
@@ -43,21 +44,21 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	}
 
 	public void updateGameState() {
+	    manager.checkCollision();
 		manager.update();
+		manager.manageEnemies();
+		manager.purgeObjects();
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
 	    Point hotSpot = new Point(0,0);
 	    BufferedImage cursorImage = new BufferedImage(1, 1, BufferedImage.TRANSLUCENT); 
 	    Cursor invisibleCursor = toolkit.createCustomCursor(cursorImage, hotSpot, "InvisibleCursor");        
 	    setCursor(invisibleCursor);
-		manager.manageEnemies();
-		manager.checkCollision(); 
 	}
 
 	public void drawGameState(Graphics g) {
 		g.setColor(Color.RED);
 		g.fillRect(0, 0, 1000, 800);
 		manager.draw(g);
-		manager.checkCollision();
 		g.setColor(Color.GRAY);
 		g.fillRect(0, 600, 1000, 200);
 		g.setColor(Color.blue);
@@ -88,7 +89,9 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	public GamePanel() {
 		timer = new Timer(repeat, this);
 		titleFont = new Font("Arial", Font.PLAIN, 48);
+		scope = new setScope(495, 395, 20, 20);
 		manager = new ObjectManager();
+		manager.addObject(scope);
 	}
 
 	void start() {
@@ -119,8 +122,6 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	}
 
 	public void mouseMoved(MouseEvent e) {
-		int Mx = e.getX();
-		int My = e.getY();
 		repaint();
 	}
 
@@ -142,7 +143,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		}
 		if (e.getKeyCode() == KeyEvent.VK_SPACE) {
 			if (e.getKeyCode() == KeyEvent.VK_SPACE) {
-				manager.addObject(new Bullet(495, 395, 10, 10));
+				
+				//manager.checkCollision();
 				System.out.println("a");
 			}
 			revalidate();

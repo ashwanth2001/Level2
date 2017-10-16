@@ -18,8 +18,8 @@ public class setScope extends GameObject{
 		super.update();
 	}
 	void draw(Graphics g) {
-		g.setColor(Color.BLACK);
-		g.drawRect(x, y, width2, height2);
+		g.setColor(Color.YELLOW);
+		g.drawRect(x, y, (int)width, (int)height);
 	}
 }
 
