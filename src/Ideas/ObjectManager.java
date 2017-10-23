@@ -53,33 +53,26 @@ public class ObjectManager {
 		if (System.currentTimeMillis() - enemyTimer >= enemySpawnTime) {
 			int y = new Random().nextInt(300) + 250;
 			double ySize = 2*y/6.54495*Math.atan(383.6635/(2*(800-y)));
-			addObject(new Intruder(1000, y, ySize, ySize));
+			addObject(new Intruder(1500, y, ySize, ySize));
 			enemyTimer = System.currentTimeMillis();
 		}
 	}
 
-	public void checkCollision() {
-		for (int i = 0; i < objects.size(); i++) {
-			for (int j = i + 1; j < objects.size(); j++) {
-				GameObject o1 = objects.get(i);
-				GameObject o2 = objects.get(j);
-				if (o1.collisionBox.intersects(o2.collisionBox)) {
-					if ((o1 instanceof Intruder && o2 instanceof setScope)
-							|| (o2 instanceof Intruder && o1 instanceof setScope)) {
+	public void checkCollision(setScope scope) {		
+			for (int j = 0; j < objects.size(); j++) {
+				GameObject ob2 = objects.get(j);
+				if (ob2.x+ob2.width>500 && ob2.x<500) {
+					if(ob2.y+ob2.height>400 && ob2.y<400) {
 						//score++;
 						//System.out.println(score);
-						o1.isAlive = false;
-					//} else if ((o1 instanceof Alien && o2 instanceof Rocketship)
-							//|| (o2 instanceof Alien && o1 instanceof Rocketship)) {
-						//o1.isAlive = false;
-						//o2.isAlive = false;
+						ob2.isAlive = false;
+						System.out.println("hit");
 					}
-
 				}
 			}
 		}
 
-	}
+
 	public void reset() {
 		objects.clear();
 	}

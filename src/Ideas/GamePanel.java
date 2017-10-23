@@ -44,11 +44,9 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	}
 
 	public void updateGameState() {
-	    manager.checkCollision();
-		manager.update();
 		manager.manageEnemies();
-		manager.purgeObjects();
-		Toolkit toolkit = Toolkit.getDefaultToolkit();
+		manager.update();
+	    Toolkit toolkit = Toolkit.getDefaultToolkit();
 	    Point hotSpot = new Point(0,0);
 	    BufferedImage cursorImage = new BufferedImage(1, 1, BufferedImage.TRANSLUCENT); 
 	    Cursor invisibleCursor = toolkit.createCustomCursor(cursorImage, hotSpot, "InvisibleCursor");        
@@ -72,6 +70,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		g.fillRect(340, 395, 320, 10);
 		g.setColor(Color.YELLOW);
 		g.setFont(titleFont);
+		scope.draw(g);
 	}
 
 	public void updateEndState() {
@@ -144,7 +143,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		if (e.getKeyCode() == KeyEvent.VK_SPACE) {
 			if (e.getKeyCode() == KeyEvent.VK_SPACE) {
 				
-				//manager.checkCollision();
+				manager.checkCollision(scope);
 				System.out.println("a");
 			}
 			revalidate();

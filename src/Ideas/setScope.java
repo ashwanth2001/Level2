@@ -14,9 +14,9 @@ public class setScope extends GameObject{
 			this.height = height;
 			this.collisionBox = new Rectangle(x,y,width,height);
 	}
-	void update() {
-		super.update();
-	}
+	//void update() {
+//		super.update();
+//	}
 	void draw(Graphics g) {
 		g.setColor(Color.YELLOW);
 		g.drawRect(x, y, (int)width, (int)height);
