@@ -9,6 +9,7 @@ public class ObjectManager {
 	ArrayList<GameObject> objects;
 
 	private int score = 0;
+	int killed = 0;
 
 	long enemyTimer = 0;
 	int enemySpawnTime = 1500;
@@ -58,7 +59,7 @@ public class ObjectManager {
 		}
 	}
 
-	public void checkCollision(setScope scope) {		
+	public void checkCollision() {		
 			for (int j = 0; j < objects.size(); j++) {
 				GameObject ob2 = objects.get(j);
 				if (ob2.x+ob2.width>500 && ob2.x<500) {
@@ -66,7 +67,7 @@ public class ObjectManager {
 						//score++;
 						//System.out.println(score);
 						ob2.isAlive = false;
-						System.out.println("hit");
+						killed++;
 					}
 				}
 			}

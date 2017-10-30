@@ -7,9 +7,9 @@ import java.awt.Rectangle;
 import java.awt.event.MouseEvent;
 import java.awt.Component;
 
-public class Intruder extends GameObject {
+public class Back extends GameObject {
 
-	public Intruder(int x, int y, double width, double height) {
+	public Back(int x, int y, double width, double height) {
 		super();
 		this.x = x;
 		this.y = y;
@@ -27,27 +27,26 @@ public class Intruder extends GameObject {
 		System.out.println(x + "," + y);// these co-ords are relative to the component
 	}
 
-	int mouseXa;
+	//int mouseXa;
 	int mouseYa;
 
 	void update() {
 		int mouseYb = MouseInfo.getPointerInfo().getLocation().y-400;
-		int mouseXb = MouseInfo.getPointerInfo().getLocation().x-500;
+		//int mouseXb = MouseInfo.getPointerInfo().getLocation().x-500;
 
-		int xdiff = mouseXa - mouseXb;
+		//int xdiff = mouseXa - mouseXb;
 		int ydiff = mouseYa - mouseYb;
 		super.update();
-		x = x - 1 + xdiff;
+		//x = x + xdiff;
 		y = y + ydiff;
 		mouseYa = MouseInfo.getPointerInfo().getLocation().y-400;
-		mouseXa = MouseInfo.getPointerInfo().getLocation().x-500;
-		
+		//mouseXa = MouseInfo.getPointerInfo().getLocation().x-500;
 	}
 
 	void draw(Graphics g) {
 		int xInt = (int)width;
 		int yInt = (int)height;
-		g.setColor(Color.BLUE);
+		g.setColor(Color.GREEN);
 		g.fillRect(x, y, xInt, yInt);
 	}
 }

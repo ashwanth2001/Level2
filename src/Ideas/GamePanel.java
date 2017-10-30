@@ -28,24 +28,30 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	final int EndState = 2;
 	int currentState = MenuState;
 	Font titleFont;
-	setScope scope;
 	ObjectManager manager;
+	Back back;
+	int bullets;
 
 	public void updateMenuState() {
 
 	}
 
 	public void drawMenuState(Graphics g) {
-		g.setColor(Color.BLUE);
+		g.setColor(Color.CYAN);
 		g.fillRect(0, 0, 1000, 800);
-		g.setColor(Color.BLACK);
+		g.setColor(Color.GREEN);
+		g.fillRect(-1000,450,3000,1000);
 		g.setFont(titleFont);
-		g.drawString("SHOOT EM", 25, 100);
+		g.setColor(Color.WHITE);
+		g.drawString("Take down 50 ants!", 290, 250);
+		g.setColor(Color.RED);
+		g.drawString("Save your sandwich!", 280, 350);
 	}
 
 	public void updateGameState() {
 		manager.manageEnemies();
 		manager.update();
+		back.update();
 	    Toolkit toolkit = Toolkit.getDefaultToolkit();
 	    Point hotSpot = new Point(0,0);
 	    BufferedImage cursorImage = new BufferedImage(1, 1, BufferedImage.TRANSLUCENT); 
@@ -54,23 +60,24 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	}
 
 	public void drawGameState(Graphics g) {
-		g.setColor(Color.RED);
+		g.setColor(Color.CYAN);
 		g.fillRect(0, 0, 1000, 800);
+		back.draw(g);
 		manager.draw(g);
-		g.setColor(Color.GRAY);
-		g.fillRect(0, 600, 1000, 200);
-		g.setColor(Color.blue);
-		g.fillRect(0, 0, 1000, 250);
 		g.setColor(Color.BLACK);
 		Graphics2D g2d = (Graphics2D) g;
 		Area a = new Area(new Rectangle(0, 0, 1000, 800));
-		a.subtract(new Area(new Ellipse2D.Double(350, 250, 300, 300)));
+		a.subtract(new Area(new Ellipse2D.Double(325, 225, 350, 350)));
 		g2d.fill(a);
 		g.fillRect(495, 240, 10, 320);
 		g.fillRect(340, 395, 320, 10);
 		g.setColor(Color.YELLOW);
 		g.setFont(titleFont);
-		scope.draw(g);
+		String b = Integer.toString(bullets);
+		g.drawString("Bullets: " + b,50,100);
+		String k = Integer.toString(manager.killed);
+		g.drawString("Killed: "+k, 750, 100);
+
 	}
 
 	public void updateEndState() {
@@ -82,15 +89,15 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		g.fillRect(0, 0, 1000, 800);
 		g.setColor(Color.BLACK);
 		g.setFont(titleFont);
-		g.drawString("You've been invaded!", 100, 100);
+		g.drawString("You Lost Your Sandwich!!", 100, 100);
 	}
 
 	public GamePanel() {
 		timer = new Timer(repeat, this);
 		titleFont = new Font("Arial", Font.PLAIN, 48);
-		scope = new setScope(495, 395, 20, 20);
 		manager = new ObjectManager();
-		manager.addObject(scope);
+		back = new Back(-1000,248,3000,1000);
+		bullets = 75;
 	}
 
 	void start() {
@@ -142,9 +149,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		}
 		if (e.getKeyCode() == KeyEvent.VK_SPACE) {
 			if (e.getKeyCode() == KeyEvent.VK_SPACE) {
-				
-				manager.checkCollision(scope);
-				System.out.println("a");
+				manager.checkCollision();
+				bullets--;
 			}
 			revalidate();
 			repaint();
