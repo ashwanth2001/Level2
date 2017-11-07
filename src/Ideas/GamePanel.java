@@ -82,10 +82,10 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		g.setColor(Color.BLACK);
 		Graphics2D g2d = (Graphics2D) g;
 		Area a = new Area(new Rectangle(0, 0, 1000, 800));
-		a.subtract(new Area(new Ellipse2D.Double(325, 225, 350, 350)));
+		a.subtract(new Area(new Ellipse2D.Double(315, 215, 370, 370)));
 		g2d.fill(a);
-		g.fillRect(495, 240, 10, 320);
-		g.fillRect(340, 395, 320, 10);
+		g.fillRect(495, 195, 10, 410);
+		g.fillRect(295, 395, 410, 10);
 		g.setColor(Color.YELLOW);
 		g.setFont(titleFont);
 		String b = Integer.toString(bullets);
@@ -184,15 +184,12 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
 		if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-			if (currentState == WinState||currentState == LoseState) {
-				currentState = MenuState;
-			}
-			else if (currentState == MenuState) {
+			//if (currentState == WinState||currentState == LoseState) {
+			//	currentState = MenuState;
+			//}
+			if (currentState == MenuState) {
 				currentState=GameState;
 			}
-//			else if (currentState == GameState) {
-//				currentState=WinState;
-//			}
 		}
 		if (e.getKeyCode() == KeyEvent.VK_SPACE) {
 			if (e.getKeyCode() == KeyEvent.VK_SPACE && bullets>0) {

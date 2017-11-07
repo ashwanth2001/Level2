@@ -9,7 +9,8 @@ import java.awt.Component;
 
 public class Intruder extends GameObject {
 
-	public Intruder(int x, int y, double width, double height) {
+
+	public Intruder(int x, int y, double width, double height, int yNoMove, int xNoMove) {
 		super();
 		this.x = x;
 		this.y = y;
@@ -17,8 +18,9 @@ public class Intruder extends GameObject {
 		this.height = height;
 		int height2 = (int)height;
 		int width2 = (int)width;
+		this.xNoMove = xNoMove;
+		this.yNoMove = yNoMove;
 		this.collisionBox = new Rectangle(x,y, width2,height2);
-
 	}
 
 	public void mouseMoved(MouseEvent e) {
@@ -36,12 +38,12 @@ public class Intruder extends GameObject {
 
 		int xdiff = mouseXa - mouseXb;
 		int ydiff = mouseYa - mouseYb;
+		xNoMove-=1;
 		super.update();
 		x = x - 1 + xdiff;
 		y = y + ydiff;
 		mouseYa = MouseInfo.getPointerInfo().getLocation().y-400;
 		mouseXa = MouseInfo.getPointerInfo().getLocation().x-500;
-		
 	}
 
 	void draw(Graphics g) {

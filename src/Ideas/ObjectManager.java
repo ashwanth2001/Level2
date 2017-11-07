@@ -54,10 +54,10 @@ public class ObjectManager {
 
 	public void manageEnemies() {
 		if (System.currentTimeMillis() - enemyTimer >= enemySpawnTime && num<50) {
-			int y = new Random().nextInt(300) + 250;
+			int y = new Random().nextInt(300) + 275;
 			double ySize = 2*y/6.54495*Math.atan(383.6635/(2*(800-y)));
 			double xSize = ySize*2;
-			addObject(new Intruder(1500, y, xSize, ySize));
+			addObject(new Intruder(2100, y, xSize, ySize,2100,y));
 			enemyTimer = System.currentTimeMillis();
 			num+=1;
 		}
@@ -79,14 +79,27 @@ public class ObjectManager {
 	
 	public void checkSW() {
 		int mouseXb = MouseInfo.getPointerInfo().getLocation().x-500;
+		int mouseYb = MouseInfo.getPointerInfo().getLocation().y-400;
 		for (int j = 0; j < objects.size(); j++) {
 			GameObject ob2 = objects.get(j);
-			if (ob2.x<150-mouseXb){
+			if (ob2.x<420-mouseXb&&ob2.yNoMove<475){
+				end = 1;
+			}
+			else if(ob2.x<353-mouseXb&&ob2.yNoMove<500) {
+				end = 1;
+			}
+			else if(ob2.x<286-mouseXb&&ob2.yNoMove<525) {
+				end = 1;
+			}
+			else if(ob2.x<219-mouseXb&&ob2.yNoMove<550) {
+				end = 1;
+			}
+			else if(ob2.x<152-mouseXb&&ob2.yNoMove<575) {
 				end = 1;
 			}
 		}
 	}
-
+	
 
 	public void reset() {
 		objects.clear();

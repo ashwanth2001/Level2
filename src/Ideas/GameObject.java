@@ -11,6 +11,7 @@ public class GameObject {
 	double height;
 	int height2 = (int)height;
 	int width2 = (int)width;
+	int xNoMove,yNoMove;
 	boolean isAlive = true;
 	Rectangle collisionBox;
 	
