@@ -31,6 +31,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	final int LoseState = 3;
 	int currentState = MenuState;
 	Font titleFont;
+	Font subfont;
 	ObjectManager manager;
 	Back back;
 	int bullets;
@@ -52,6 +53,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		g.drawString("Take down 50 ants!", 290, 250);
 		g.setColor(Color.RED);
 		g.drawString("Save your sandwich!", 280, 350);
+		g.setFont(subfont);
+		g.drawString("Don't move this window", 700,750);
 	}
 
 	public void updateGameState() {
@@ -125,10 +128,11 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	public GamePanel() {
 		timer = new Timer(repeat, this);
 		titleFont = new Font("Arial", Font.PLAIN, 48);
+		subfont = new Font("Arial", Font.PLAIN, 24);
 		back = new Back(-1000,248,3000,1000);
 		bullets = 75;
 		manager = new ObjectManager();
-		sw = new Sandwich(-300, 100, 800, 600);
+		sw = new Sandwich(-300, 150, 800, 600);
 		try {
 			AntImg = ImageIO.read(this.getClass().getResourceAsStream("Ant.png"));
 			SandwichImg = ImageIO.read(this.getClass().getResourceAsStream("Sandwich.png"));

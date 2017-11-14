@@ -54,7 +54,7 @@ public class ObjectManager {
 
 	public void manageEnemies() {
 		if (System.currentTimeMillis() - enemyTimer >= enemySpawnTime && num<50) {
-			int y = new Random().nextInt(300) + 275;
+			int y = new Random().nextInt(300) + 250;
 			double ySize = 2*y/6.54495*Math.atan(383.6635/(2*(800-y)));
 			double xSize = ySize*2;
 			addObject(new Intruder(2100, y, xSize, ySize,2100,y));
@@ -77,27 +77,50 @@ public class ObjectManager {
 			}
 		}
 	
-	public void checkSW() {
+	/*public void checkSW() {
 		int mouseXb = MouseInfo.getPointerInfo().getLocation().x-500;
 		int mouseYb = MouseInfo.getPointerInfo().getLocation().y-400;
 		for (int j = 0; j < objects.size(); j++) {
 			GameObject ob2 = objects.get(j);
-			if (ob2.x<420-mouseXb&&ob2.yNoMove<475){
-				end = 1;
-			}
-			else if(ob2.x<353-mouseXb&&ob2.yNoMove<500) {
-				end = 1;
-			}
-			else if(ob2.x<286-mouseXb&&ob2.yNoMove<525) {
-				end = 1;
-			}
-			else if(ob2.x<219-mouseXb&&ob2.yNoMove<550) {
-				end = 1;
-			}
-			else if(ob2.x<152-mouseXb&&ob2.yNoMove<575) {
-				end = 1;
-			}
+			
 		}
+	}*/
+	
+	public void checkSW() {
+		int mouseXb = MouseInfo.getPointerInfo().getLocation().x-500;
+		int mouseYb = MouseInfo.getPointerInfo().getLocation().y-500;
+		for (int j = 0; j < objects.size(); j++) {
+			 GameObject ob2 = objects.get(j);
+			 /*if(ob2.x<219-mouseXb&&ob2.y<550-mouseYb) {
+				 end = 1;
+			 }
+			 else if(ob2.x<286-mouseXb&&ob2.y>525-mouseYb) {
+				 end = 1;
+			 }
+			 else if(ob2.x<353-mouseXb&&ob2.y>500-mouseYb) {
+				 end = 1;
+			 }
+			 else if(ob2.x<420-mouseXb){
+				 end = 1;
+			 }*/
+			 
+			 
+			 /*if(ob2.xNoMove<219 && ob2.yNoMove==550) {
+				 end = 1;
+			 }
+			 else if(ob2.xNoMove<286 && ob2.yNoMove>525) {
+				 end = 1;
+			 }
+			 else if(ob2.xNoMove<353 && ob2.yNoMove>500) {
+				 end = 1;
+			 }
+			 else if(ob2.xNoMove<420){
+				 end = 1;
+			 }*/
+			 if(ob2.x<410-mouseXb) {
+				 end = 1;
+			 }
+		 }
 	}
 	
 

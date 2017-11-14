@@ -31,6 +31,7 @@ public class Sandwich extends GameObject {
 	int mouseYa;
 
 	void update() {
+		//if(mouseYa<400&&mouseXa<500) {
 		int mouseYb = MouseInfo.getPointerInfo().getLocation().y-400;
 		int mouseXb = MouseInfo.getPointerInfo().getLocation().x-500;
 
@@ -41,6 +42,7 @@ public class Sandwich extends GameObject {
 		y = y + ydiff;
 		mouseYa = MouseInfo.getPointerInfo().getLocation().y-400;
 		mouseXa = MouseInfo.getPointerInfo().getLocation().x-500;
+		//}
 	}
 
 	void draw(Graphics g) {
@@ -48,6 +50,8 @@ public class Sandwich extends GameObject {
 		int yInt = (int)height;
 		//g.setColor(Color.GREEN);
 		//g.fillRect(x, y, xInt, yInt);
+		g.setColor(Color.RED);
+		g.drawLine(x+710, y+98, x+710, 1500);
 		g.drawImage(GamePanel.SandwichImg, x, y, xInt, yInt, null);
 	}
 }

@@ -31,6 +31,7 @@ public class Back extends GameObject {
 	int mouseYa;
 
 	void update() {
+		//if(mouseYa<400) {
 		int mouseYb = MouseInfo.getPointerInfo().getLocation().y-400;
 		//int mouseXb = MouseInfo.getPointerInfo().getLocation().x-500;
 
@@ -41,6 +42,7 @@ public class Back extends GameObject {
 		y = y + ydiff;
 		mouseYa = MouseInfo.getPointerInfo().getLocation().y-400;
 		//mouseXa = MouseInfo.getPointerInfo().getLocation().x-500;
+		//}
 	}
 
 	void draw(Graphics g) {
