@@ -37,7 +37,6 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	int bullets;
 	public static BufferedImage AntImg;
 	public static BufferedImage SandwichImg;
-	Sandwich sw;
 
 	public void updateMenuState() {
 
@@ -61,7 +60,6 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		manager.manageEnemies();
 		manager.update();
 		back.update();
-		sw.update();
 	    Toolkit toolkit = Toolkit.getDefaultToolkit();
 	    Point hotSpot = new Point(0,0);
 	    BufferedImage cursorImage = new BufferedImage(1, 1, BufferedImage.TRANSLUCENT); 
@@ -80,7 +78,6 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		g.setColor(Color.CYAN);
 		g.fillRect(0, 0, 1000, 800);
 		back.draw(g);
-		sw.draw(g);
 		manager.draw(g);
 		g.setColor(Color.BLACK);
 		Graphics2D g2d = (Graphics2D) g;
@@ -132,7 +129,6 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		back = new Back(-1000,248,3000,1000);
 		bullets = 75;
 		manager = new ObjectManager();
-		sw = new Sandwich(-300, 150, 800, 600);
 		try {
 			AntImg = ImageIO.read(this.getClass().getResourceAsStream("Ant.png"));
 			SandwichImg = ImageIO.read(this.getClass().getResourceAsStream("Sandwich.png"));
