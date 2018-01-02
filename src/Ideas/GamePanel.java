@@ -38,13 +38,10 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	Sandwich sw;
 	public static BufferedImage AntImg;
 	public static BufferedImage SandwichImg;
-<<<<<<< HEAD
-=======
 
 	public void updateMenuState() {
 
 	}
->>>>>>> 6b1c420fd2b16ad4b223378e845517f53b686c72
 
 	public void drawMenuState(Graphics g) {
 		g.setColor(Color.CYAN);
@@ -64,11 +61,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		manager.manageEnemies();
 		manager.update();
 		back.update();
-<<<<<<< HEAD
-		sw.update();
+		//sw.update();
 		manager.updateS();
-=======
->>>>>>> 6b1c420fd2b16ad4b223378e845517f53b686c72
 	    Toolkit toolkit = Toolkit.getDefaultToolkit();
 	    Point hotSpot = new Point(0,0);
 	    BufferedImage cursorImage = new BufferedImage(1, 1, BufferedImage.TRANSLUCENT); 
@@ -91,10 +85,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		g.setColor(Color.BLACK);
 		Graphics2D g2d = (Graphics2D) g;
 		Area a = new Area(new Rectangle(0, 0, 1000, 800));
-<<<<<<< HEAD
 		a.subtract(new Area(new Ellipse2D.Double(500-(manager.size/2), 400-(manager.size/2), manager.size, manager.size)));
-=======
->>>>>>> 6b1c420fd2b16ad4b223378e845517f53b686c72
 		a.subtract(new Area(new Ellipse2D.Double(315, 215, 370, 370)));
 		g2d.fill(a);
 		g.fillRect(495, 195, 10, 410);
@@ -183,9 +174,6 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
 		if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-			//if (currentState == WinState||currentState == LoseState) {
-			//	currentState = MenuState;
-			//}
 			if (currentState == MenuState) {
 				currentState=GameState;
 			}

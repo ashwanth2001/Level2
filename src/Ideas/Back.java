@@ -22,7 +22,7 @@ public class Back extends GameObject {
 	public void mouseMoved(MouseEvent e) {
 		int x = e.getX();
 		int y = e.getY();
-		System.out.println(x + "," + y);// these co-ords are relative to the component
+		System.out.println(x + "," + y);
 	}
 
 	int mouseXa;
