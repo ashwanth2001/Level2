@@ -8,13 +8,13 @@ import java.util.Random;
 public class ObjectManager {
 	ArrayList<GameObject> objects;
 
-	private int score = 0;
 	int killed = 0;
 	int end = 0;
 	int num = 0;
+	int size = 1026;
 
 	long enemyTimer = 0;
-	int enemySpawnTime = 1500;
+	int enemySpawnTime = 2000;
 
 	public ObjectManager() {
 		objects = new ArrayList<GameObject>();
@@ -53,13 +53,14 @@ public class ObjectManager {
 	}
 
 	public void manageEnemies() {
-		if (System.currentTimeMillis() - enemyTimer >= enemySpawnTime && num<50) {
+		if (System.currentTimeMillis() - enemyTimer >= enemySpawnTime&&num<60) {
 			int y = new Random().nextInt(300) + 250;
 			double ySize = 2*y/6.54495*Math.atan(383.6635/(2*(800-y)));
 			double xSize = ySize*2;
-			addObject(new Intruder(1500, y, xSize, ySize));
+			addObject(new Intruder(2100, y, xSize, ySize,2100,y));
 			enemyTimer = System.currentTimeMillis();
-			num+=1;
+			num++;
+			enemySpawnTime-=15;
 		}
 	}
 
@@ -68,8 +69,6 @@ public class ObjectManager {
 				GameObject ob2 = objects.get(j);
 				if (ob2.x+ob2.width>500 && ob2.x<500) {
 					if(ob2.y+ob2.height>400 && ob2.y<400) {
-						//score++;
-						//System.out.println(score);
 						ob2.isAlive = false;
 						killed++;
 					}
@@ -80,13 +79,19 @@ public class ObjectManager {
 	public void checkSW() {
 		int mouseXb = MouseInfo.getPointerInfo().getLocation().x-500;
 		for (int j = 0; j < objects.size(); j++) {
-			GameObject ob2 = objects.get(j);
-			if (ob2.x<150-mouseXb){
-				end = 1;
-			}
+			 GameObject ob2 = objects.get(j);
+			 if(ob2.x<410-mouseXb) {
+				 end = 1;
+			 }
+		 }
+	}
+	
+	public void updateS(){
+		if(size>350) {
+			size-=5;
 		}
 	}
-
+	
 
 	public void reset() {
 		objects.clear();

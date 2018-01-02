@@ -1,11 +1,9 @@
 package Ideas;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.MouseInfo;
 import java.awt.Rectangle;
 import java.awt.event.MouseEvent;
-import java.awt.Component;
 
 public class Sandwich extends GameObject {
 
@@ -18,7 +16,6 @@ public class Sandwich extends GameObject {
 		int height2 = (int)height;
 		int width2 = (int)width;
 		this.collisionBox = new Rectangle(x,y, width2,height2);
-
 	}
 
 	public void mouseMoved(MouseEvent e) {
@@ -46,8 +43,6 @@ public class Sandwich extends GameObject {
 	void draw(Graphics g) {
 		int xInt = (int)width;
 		int yInt = (int)height;
-		//g.setColor(Color.GREEN);
-		//g.fillRect(x, y, xInt, yInt);
 		g.drawImage(GamePanel.SandwichImg, x, y, xInt, yInt, null);
 	}
 }

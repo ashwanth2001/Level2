@@ -31,16 +31,13 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	final int LoseState = 3;
 	int currentState = MenuState;
 	Font titleFont;
+	Font subfont;
 	ObjectManager manager;
 	Back back;
 	int bullets;
+	Sandwich sw;
 	public static BufferedImage AntImg;
 	public static BufferedImage SandwichImg;
-	Sandwich sw;
-
-	public void updateMenuState() {
-
-	}
 
 	public void drawMenuState(Graphics g) {
 		g.setColor(Color.CYAN);
@@ -52,6 +49,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		g.drawString("Take down 50 ants!", 290, 250);
 		g.setColor(Color.RED);
 		g.drawString("Save your sandwich!", 280, 350);
+		g.setFont(subfont);
+		g.drawString("Don't move this window", 700,750);
 	}
 
 	public void updateGameState() {
@@ -59,6 +58,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		manager.update();
 		back.update();
 		sw.update();
+		manager.updateS();
 	    Toolkit toolkit = Toolkit.getDefaultToolkit();
 	    Point hotSpot = new Point(0,0);
 	    BufferedImage cursorImage = new BufferedImage(1, 1, BufferedImage.TRANSLUCENT); 
@@ -77,15 +77,15 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		g.setColor(Color.CYAN);
 		g.fillRect(0, 0, 1000, 800);
 		back.draw(g);
-		sw.draw(g);
 		manager.draw(g);
 		g.setColor(Color.BLACK);
 		Graphics2D g2d = (Graphics2D) g;
 		Area a = new Area(new Rectangle(0, 0, 1000, 800));
-		a.subtract(new Area(new Ellipse2D.Double(325, 225, 350, 350)));
+		a.subtract(new Area(new Ellipse2D.Double(500-(manager.size/2), 400-(manager.size/2), manager.size, manager.size)));
+		a.subtract(new Area(new Ellipse2D.Double(315, 215, 370, 370)));
 		g2d.fill(a);
-		g.fillRect(495, 240, 10, 320);
-		g.fillRect(340, 395, 320, 10);
+		g.fillRect(495, 195, 10, 410);
+		g.fillRect(295, 395, 410, 10);
 		g.setColor(Color.YELLOW);
 		g.setFont(titleFont);
 		String b = Integer.toString(bullets);
@@ -95,20 +95,12 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 
 	}
 
-	public void updateLoseState() {
-
-	}
-
 	public void drawLoseState(Graphics g) {
 		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, 1000, 800);
 		g.setColor(Color.RED);
 		g.setFont(titleFont);
 		g.drawString("You Lost Your Sandwich!!", 200, 350);
-	}
-	
-	public void updateWinState() {
-
 	}
 
 	public void drawWinState(Graphics g) {
@@ -125,6 +117,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	public GamePanel() {
 		timer = new Timer(repeat, this);
 		titleFont = new Font("Arial", Font.PLAIN, 48);
+		subfont = new Font("Arial", Font.PLAIN, 24);
 		back = new Back(-1000,248,3000,1000);
 		bullets = 75;
 		manager = new ObjectManager();
@@ -159,14 +152,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		repaint();
-		if (currentState == MenuState) {
-			updateMenuState();
-		} else if (currentState == GameState) {
+		if (currentState == GameState) {
 			updateGameState();
-		} else if (currentState == LoseState) {
-			updateLoseState();
-		} else if (currentState == WinState) {
-			updateWinState();
 		}
 	}
 
@@ -184,15 +171,12 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
 		if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-			if (currentState == WinState||currentState == LoseState) {
-				currentState = MenuState;
-			}
-			else if (currentState == MenuState) {
+			//if (currentState == WinState||currentState == LoseState) {
+			//	currentState = MenuState;
+			//}
+			if (currentState == MenuState) {
 				currentState=GameState;
 			}
-//			else if (currentState == GameState) {
-//				currentState=WinState;
-//			}
 		}
 		if (e.getKeyCode() == KeyEvent.VK_SPACE) {
 			if (e.getKeyCode() == KeyEvent.VK_SPACE && bullets>0) {

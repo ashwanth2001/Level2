@@ -1,7 +1,7 @@
+
 package Ideas;
 
 import javax.swing.JFrame;
-import java.awt.Component;
 
 public class Main {
 	JFrame frame;
