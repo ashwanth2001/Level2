@@ -38,6 +38,13 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	Sandwich sw;
 	public static BufferedImage AntImg;
 	public static BufferedImage SandwichImg;
+<<<<<<< HEAD
+=======
+
+	public void updateMenuState() {
+
+	}
+>>>>>>> 6b1c420fd2b16ad4b223378e845517f53b686c72
 
 	public void drawMenuState(Graphics g) {
 		g.setColor(Color.CYAN);
@@ -57,8 +64,11 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		manager.manageEnemies();
 		manager.update();
 		back.update();
+<<<<<<< HEAD
 		sw.update();
 		manager.updateS();
+=======
+>>>>>>> 6b1c420fd2b16ad4b223378e845517f53b686c72
 	    Toolkit toolkit = Toolkit.getDefaultToolkit();
 	    Point hotSpot = new Point(0,0);
 	    BufferedImage cursorImage = new BufferedImage(1, 1, BufferedImage.TRANSLUCENT); 
@@ -81,7 +91,10 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		g.setColor(Color.BLACK);
 		Graphics2D g2d = (Graphics2D) g;
 		Area a = new Area(new Rectangle(0, 0, 1000, 800));
+<<<<<<< HEAD
 		a.subtract(new Area(new Ellipse2D.Double(500-(manager.size/2), 400-(manager.size/2), manager.size, manager.size)));
+=======
+>>>>>>> 6b1c420fd2b16ad4b223378e845517f53b686c72
 		a.subtract(new Area(new Ellipse2D.Double(315, 215, 370, 370)));
 		g2d.fill(a);
 		g.fillRect(495, 195, 10, 410);
@@ -121,7 +134,6 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		back = new Back(-1000,248,3000,1000);
 		bullets = 75;
 		manager = new ObjectManager();
-		sw = new Sandwich(-300, 100, 800, 600);
 		try {
 			AntImg = ImageIO.read(this.getClass().getResourceAsStream("Ant.png"));
 			SandwichImg = ImageIO.read(this.getClass().getResourceAsStream("Sandwich.png"));

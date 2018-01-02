@@ -63,6 +63,15 @@ public class ObjectManager {
 			enemySpawnTime-=15;
 		}
 	}
+	
+	/*public void waves() {
+		if(num == 15) {
+			for(int i = 0; i<500;i++) {
+				
+			}
+		}
+	}*/
+	
 
 	public void checkCollision() {		
 			for (int j = 0; j < objects.size(); j++) {
@@ -76,9 +85,11 @@ public class ObjectManager {
 			}
 		}
 	
-	public void checkSW() {
+	/*public void checkSW() {
 		int mouseXb = MouseInfo.getPointerInfo().getLocation().x-500;
+		int mouseYb = MouseInfo.getPointerInfo().getLocation().y-400;
 		for (int j = 0; j < objects.size(); j++) {
+<<<<<<< HEAD
 			 GameObject ob2 = objects.get(j);
 			 if(ob2.x<410-mouseXb) {
 				 end = 1;
@@ -89,7 +100,22 @@ public class ObjectManager {
 	public void updateS(){
 		if(size>350) {
 			size-=5;
+=======
+			GameObject ob2 = objects.get(j);
+			
+>>>>>>> 6b1c420fd2b16ad4b223378e845517f53b686c72
 		}
+	}*/
+	
+	public void checkSW() {
+		int mouseXb = MouseInfo.getPointerInfo().getLocation().x-500;
+		int mouseYb = MouseInfo.getPointerInfo().getLocation().y-500;
+		for (int j = 0; j < objects.size(); j++) {
+			 GameObject ob2 = objects.get(j);
+			 if(ob2.x<410-mouseXb) {
+				 end = 1;
+			 }
+		 }
 	}
 	
 
