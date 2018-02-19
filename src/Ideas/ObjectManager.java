@@ -11,7 +11,8 @@ public class ObjectManager {
 	int killed = 0;
 	int end = 0;
 	int num = 0;
-	int size = 1026;
+	int size = 1000;
+	int c = 2;
 
 	long enemyTimer = 0;
 	int enemySpawnTime = 2000;
@@ -89,6 +90,11 @@ public class ObjectManager {
 	public void updateS(){
 		if(size>350) {
 			size-=5;
+		}
+	}
+	public void updateC() {
+		if(c<410){
+			c+=3;
 		}
 	}
 	

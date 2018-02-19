@@ -6,7 +6,7 @@ import java.awt.event.MouseEvent;
 import java.awt.Color;
 
 public class Back extends GameObject {
-
+	
 	public Back(int x, int y, double width, double height) {
 		super();
 		this.x = x;
@@ -49,8 +49,16 @@ public class Back extends GameObject {
 		g.setColor(Color.GREEN);
 		g.fillRect(x, y, xInt, yInt);
 		g.setColor(Color.RED);
-		g.drawLine(x+1410, y, x+1410, 1500);
-		g.drawImage(GamePanel.SandwichImg, x+700, y-98, 800, 600, null);
-		
+		g.drawLine(x/3+802, y, x+1410, y+(int)height);
+		g.setColor(new Color(156, 93, 82));
+		for(int i = 0; i<10; i++) {
+			g.drawLine(x/3+836+i*33, y, x+1510+100*i, y+(int)height);
+		}
+		g.drawImage(GamePanel.SandwichImg, 2*x/3+375, y-98, 800, 600, null);
+		//g.drawImage(GamePanel.RockImg, x+1500+50, y+50, 80, 100, null);
+		//g.drawImage(GamePanel.RockImg, x+1500+200, y+250, 80, 100, null);
+		//g.drawImage(GamePanel.RockImg, x+1500+350, y+200, 80, 100, null);
+		//g.drawImage(GamePanel.RockImg, x+1500+500, y+100, 80, 100, null);
+		//g.drawImage(GamePanel.RockImg, x+1500+650, y+150, 80, 100, null);
 	}
 }
